@@ -9,7 +9,15 @@ const services = [
 
 export default function ServicesGrid() {
   return (
-    <div className="container my-4">
+    <div
+      className="container-fluid my-4 rounded"
+      style={{
+        backgroundColor: '#40E0D0', // firuze green
+        minHeight: '300px',         // make container taller
+        paddingTop: '100px',
+        paddingBottom: '40px',
+      }}
+    >
       <Row>
         {services.map((service, idx) => (
           <Col md={4} key={idx}>
