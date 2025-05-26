@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import ServiceGrid from './components/ServiceGrid';
 import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
+import Altbar from './components/Altbar';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             </div>
             <ServiceGrid />
             <ServicesGrid />
+            <Altbar/>
           </>
         } />
         <Route path="/login" element={<Login />} />

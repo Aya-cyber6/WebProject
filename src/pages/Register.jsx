@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import SignupForm from "../components/SignupForm";
+import Altbar from "../components/Altbar";
 
 function Register() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -23,27 +25,9 @@ function Register() {
 
   return (
     <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        /><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        /><br />
-        <button type="submit">Register</button>
-      </form>
-      <p>{message}</p>
+      <SignupForm/>
+
+      <Altbar/>
     </div>
   );
 }

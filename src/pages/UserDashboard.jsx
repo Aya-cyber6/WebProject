@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const UserDashboard = () => {
   return (
     <div className="container mt-5">
@@ -11,6 +12,7 @@ const UserDashboard = () => {
         <p>Username: (display from state or context)</p>
         <p>Email: (if available)</p>
       </div>
+
     </div>
   );
 };

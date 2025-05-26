@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import LoginForm from "../components/LoginForm";
+import Altbar from "../components/Altbar";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -25,27 +27,8 @@ function Login() {
 
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        /><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        /><br />
-        <button type="submit">Login</button>
-      </form>
-      <p>{message}</p>
+      <LoginForm/>
+      <Altbar/>
     </div>
   );
 }
