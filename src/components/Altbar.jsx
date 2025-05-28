@@ -8,7 +8,7 @@ function Altbar() {
   const navItems = [
     { id: 1, label: 'Bize Yazın', icon: 'bi bi-chat-dots'},
     { id: 2, label: 'Çağrı Merkezi', icon: 'bi bi-telephone'},
-    { id: 3, label: 'Belgelerim', icon: 'bi bi-folder2-open' },
+    { id: 3, label: 'Belgelerim', icon: 'bi bi-folder2-open' , url: "/documents" },
     { id: 4, label: 'Hakkımızda', icon: 'bi bi-info-circle' },
   ];
 

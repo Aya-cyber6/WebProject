@@ -47,6 +47,7 @@ import { useNavigate } from 'react-router-dom';
               type="text"
               className="form-control w-25 mx-auto"
               id="tc"
+              name="tc"
               value={formData.tc}
               onChange={handleChange}
               required
@@ -58,6 +59,7 @@ import { useNavigate } from 'react-router-dom';
               type="password"
               className="form-control w-25 mx-auto"
               id="password"
+              name="password"
               value={formData.password}
               onChange={handleChange}
               required

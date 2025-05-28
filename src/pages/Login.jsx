@@ -5,7 +5,7 @@ import LoginForm from "../components/LoginForm";
 import Altbar from "../components/Altbar";
 
 function Login() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+ /* const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
@@ -23,7 +23,7 @@ function Login() {
     } catch (err) {
       setMessage("Login failed. Check your credentials.");
     }
-  };
+  };*/
 
   return (
     <div>

@@ -39,39 +39,39 @@ function SignupForm() {
         <div className="row justify-content-center">
           <div className="col-md-4 mb-3">
             <label htmlFor="tc" className="form-label">TC Kimlik No</label>
-            <input type="text" className="form-control" id="tc" value={formData.tc} onChange={handleChange} required />
+            <input type="text" className="form-control" id="tc" name="tc" value={formData.tc} onChange={handleChange} required />
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="name" className="form-label">Ad</label>
-            <input type="text" className="form-control" id="name" value={formData.name} onChange={handleChange} required />
+            <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} required />
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="surname" className="form-label">Soyad</label>
-            <input type="text" className="form-control" id="surname" value={formData.surname} onChange={handleChange} required />
+            <input type="text" className="form-control" id="surname" name="surname" value={formData.surname} onChange={handleChange} required />
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="email" className="form-label">Email</label>
-            <input type="text" className="form-control" id="email" value={formData.email} onChange={handleChange} required />
+            <input type="text" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="phone" className="form-label">Telefon</label>
-            <input type="text" className="form-control" id="phone" value={formData.phone} onChange={handleChange} required />
+            <input type="text" className="form-control" id="phone" name="phone" value={formData.phone} onChange={handleChange} required />
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="birthday" className="form-label">Doğum Tarihi</label>
-            <input type="date" className="form-control" id="birthday" value={formData.birthday} onChange={handleChange} required />
+            <input type="date" className="form-control" id="birthday" name="birthday" value={formData.birthday} onChange={handleChange} required />
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="address" className="form-label">Adres</label>
-            <input type="text" className="form-control" id="address" value={formData.address} onChange={handleChange} required />
+            <input type="text" className="form-control" id="address" name="address" value={formData.address} onChange={handleChange} required />
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="password" className="form-label">Parola</label>
-            <input type="password" className="form-control" id="password" value={formData.password} onChange={handleChange} required />
+            <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange} required />
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="confirmPassword" className="form-label">Parola Tekrar</label>
-            <input type="password" className="form-control" id="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+            <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
           </div>
         </div>
 

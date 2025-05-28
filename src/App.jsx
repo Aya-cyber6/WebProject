@@ -12,6 +12,7 @@ import ServiceGrid from './components/ServiceGrid';
 import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
 import Altbar from './components/Altbar';
+import Documents from './pages/Documents';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/documents" element={<Documents/>}/>
 
       </Routes>
     </>
