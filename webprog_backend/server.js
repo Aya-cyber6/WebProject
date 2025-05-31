@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors());
+
 app.use(express.json());
 
 // MySQL connection
@@ -64,7 +65,74 @@ app.post("/register", (req, res) => {
   });
 });
 
+app.get("/user/:tc", (req, res) => {
+  const { tc } = req.params;
+
+  if (!tc) {
+    return res.status(400).send({ message: "TC is required" });
+  }
+
+  const query = "SELECT email, name, surname, tc, birthdate, address, phone FROM users WHERE tc = ?";
+  db.query(query, [tc], (err, results) => {
+    if (err) {
+      return res.status(500).send({ message: "Database error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    res.send(results[0]); 
+  });
+});
+
+//Çalışılan yer bilgisi
+app.get("/work/:tc", (req, res) => {
+  const { tc } = req.params;
+
+  if (!tc) {
+    return res.status(400).send({ message: "TC is required" });
+  }
+
+  const query = "SELECT  work_name, last_day, first_day, total_day FROM works WHERE tc = ? ORDER BY last_day DESC";
+  db.query(query, [tc], (err, results) => {
+    if (err) {
+      return res.status(500).send({ message: "Database error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send({ message: "Works not found" });
+    }
+
+    res.send(results[0]); 
+  });
+});
+
+//toplam çalışılan günü hesaplar
+app.get("/work/total/:tc", (req, res) => {
+  const { tc } = req.params;
+
+  if (!tc) {
+    return res.status(400).send({ message: "TC is required" });
+  }
+
+
+  const query = "SELECT SUM(total_day),tc FROM works WHERE tc = ? Group By tc";
+  db.query(query, [tc], (err, results) => {
+    if (err) {
+      return res.status(500).send({ message: "Database error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send({ message: "Works not found" });
+    }
+
+    res.send(results[0]); 
+  });
+});
+
+
 
 app.listen(3001, () => {
-  console.log("Server running on port 3001");
+  console.log("Server running on port ");
 });

@@ -1,14 +1,13 @@
-import React from 'react'
-import DocumentCard from '../components/DocumentCard'
-import Altbar from '../components/Altbar'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import DocumentCard from '../components/DocumentCard';
+import Altbar from '../components/Altbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileAlt, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 function Documents() {
-    const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
-    // Örnek veri çağrısı — burayı gerçek API'nizle değiştirin
     const fetchDocuments = async () => {
       try {
         const response = await fetch('/documents'); 
@@ -21,23 +20,43 @@ function Documents() {
 
     fetchDocuments();
   }, []);
+
+  // Eğer belge yoksa gösterilecek placeholder obje
+  const docsToDisplay = documents.length > 0 
+    ? documents 
+    : [{ id: 0, name: "📁 Henüz belge bulunmamaktadır", date: "", context: "" }];
+
   return (
-    <div>
-      {documents.length === 0 ? (
-        <p style={{ textAlign: 'center', marginTop: '80px' }}>
-          Henüz belge bulunmuyor.
-        </p>
-      ) : (
-        documents.map((doc, i) => (
+    <div className="container mt-5 mb-5" style={{ paddingBottom: '80px', paddingTop: '40px' }}>
+      <h2
+        className="mb-4 fw-bold d-flex align-items-center gap-2"
+        style={{ fontSize: "2rem", color: "#2c3e50", textShadow: "1px 1px 3px rgba(0,0,0,0.1)" }}
+      >
+        <FontAwesomeIcon icon={faFolderOpen} /> Belgelerim
+      </h2>
+
+      <div
+        className="d-flex flex-column gap-3"
+        style={{ maxWidth: '700px', margin: '0 auto' }}
+      >
+        {docsToDisplay.map((doc, i) => (
           <DocumentCard
             key={i}
+            id={i + 1}
             name={doc.name}
             date={doc.date}
             context={doc.context}
+            icon={<FontAwesomeIcon icon={faFileAlt} style={{ marginRight: '8px', color: '#0d6efd' }} />}
           />
-        ))
-      )}
-      <Altbar/>
+        ))}
+      </div>
+
+      <Altbar />
     </div>
-  )
-}export default Documents
+  );
+}
+
+export default Documents;
+
+
+

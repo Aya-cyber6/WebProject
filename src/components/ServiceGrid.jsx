@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const services = [
-  { title: 'Çalışma Geçmişi', icon: 'bi bi-briefcase', url: '/calisma-gecmisi' },
+  { title: 'Çalışma Geçmişi', icon: 'bi bi-briefcase', url: '/work-history' },
   { title: 'Kişisel Araçlar', icon: 'bi bi-truck', url: '/kisisel-araclar' },
   { title: 'Şirket Araçları', icon: 'bi bi-truck-front', url: '/sirket-araclar' },
   { title: 'Şifre Talebi (Kargo)', icon: 'bi bi-mailbox', url: '/sifre-talebi' },

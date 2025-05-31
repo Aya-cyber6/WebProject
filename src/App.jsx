@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
 import Altbar from './components/Altbar';
 import Documents from './pages/Documents';
+import Work from './pages/Work';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/documents" element={<Documents/>}/>
+        <Route path="/work-history" element={<Work/>}/>
 
       </Routes>
     </>

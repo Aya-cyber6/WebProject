@@ -28,7 +28,7 @@ function Login() {
   return (
     <div>
       <LoginForm/>
-      <Altbar/>
+
     </div>
   );
 }

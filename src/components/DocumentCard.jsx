@@ -1,43 +1,62 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileAlt, faCalendarDay, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
-function DocumentCard({id,name,date,context}) {
+function DocumentCard({ id, name, date, context }) {
   const [isVisible, setVisible] = useState(false);
-
 
   const handleToggle = () => {
     setVisible(!isVisible);
   };
 
   return (
-    <div className="container" style={{ marginTop: '60px' }}>
-      <div className="row justify-content-center">
-        <div className="col-md-8 mb-4">
-          <div
-            className="card shadow rounded"
-            onClick={handleToggle}
-            style={{
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              backgroundColor: '#d2e8d8',
-              padding: '20px',
-              border: '2px solid rgb(14, 15, 14)'
-            }}
-          >
-            <strong>Belge {id} :<h4 className="card-title">{name}</h4></strong>
-
-            {isVisible && (
-              <div className="card-body mt-3">
-                <p className="card-text">
-                  <strong>Tarih:</strong> {date}
-                </p>
-                <p className="card-text">
-                  <strong>İçerik:</strong> {context}
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
+    <div
+      className="shadow rounded"
+      onClick={handleToggle}
+      style={{
+        cursor: 'pointer',
+        background: 'linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%)',
+        padding: '20px',
+        borderRadius: '10px',
+        border: '1.5px solid #00796b',
+        boxShadow: '0 8px 15px rgba(0, 121, 107, 0.3)',
+        maxWidth: '700px',
+        margin: '0 auto',
+        transition: 'all 0.3s ease',
+      }}
+    >
+      <div className="d-flex align-items-center gap-3 mb-2">
+        <FontAwesomeIcon icon={faFileAlt} size="lg" style={{ color: '#00796b' }} />
+        <h4 className="m-0" style={{ color: '#004d40' }}>
+          {name || `Belge ${id}`}
+        </h4>
       </div>
+
+      {isVisible && (
+        <div
+          className="mt-3"
+          style={{
+            backgroundColor: '#b2dfdb',
+            borderRadius: '8px',
+            padding: '15px',
+            boxShadow: 'inset 0 0 10px rgba(0,0,0,0.05)',
+            color: '#004d40',
+            fontWeight: '600',
+          }}
+        >
+          <p>
+            <FontAwesomeIcon icon={faCalendarDay} className="me-2" />
+            <strong>Tarih:</strong> {date || 'Belirtilmemiş'}
+          </p>
+          <p>
+            <FontAwesomeIcon icon={faInfoCircle} className="me-2" />
+            <strong>İçerik:</strong> {context || 'Detay yok'}
+          </p>
+        </div>
+      )}
+      <small style={{ color: '#004d40', fontStyle: 'italic' }}>
+        (Belgeye tıklayarak detayları göster/gizle)
+      </small>
     </div>
   );
 }

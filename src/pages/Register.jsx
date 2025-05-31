@@ -27,7 +27,7 @@ function Register() {
     <div>
       <SignupForm/>
 
-      <Altbar/>
+
     </div>
   );
 }
