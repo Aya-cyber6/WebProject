@@ -154,6 +154,29 @@ app.get("/vehicle/:tc", (req, res) => {
   });
 });
 
+//borçları getirir
+app.get("/debts/:tc", (req, res) => {
+  const { tc } = req.params;
+
+  if (!tc) {
+    return res.status(400).send({ message: "TC is required" });
+  }
+
+
+  const query = "SELECT place,last_date,amount,tc FROM works WHERE tc = ?";
+  db.query(query, [tc], (err, results) => {
+    if (err) {
+      return res.status(500).send({ message: "Database error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send({ message: "Debts not found" });
+    }
+
+    res.send(results); 
+  });
+});
+
 
 
 app.listen(3001, () => {
