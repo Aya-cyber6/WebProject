@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const services = [
   { title: 'Çalışma Geçmişi', icon: 'bi bi-briefcase', url: '/work-history' },
-  { title: 'Kişisel Araçlar', icon: 'bi bi-truck', url: '/kisisel-araclar' },
+  { title: 'Kişisel Araçlar', icon: 'bi bi-truck', url: '/vehicles' },
   { title: 'Şirket Araçları', icon: 'bi bi-truck-front', url: '/sirket-araclar' },
   { title: 'Şifre Talebi (Kargo)', icon: 'bi bi-mailbox', url: '/sifre-talebi' },
   { title: 'İkamet Bilgilerim', icon: 'bi bi-house-door', url: '/ikamet-bilgileri' },

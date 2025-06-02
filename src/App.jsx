@@ -14,6 +14,8 @@ import UserDashboard from './pages/UserDashboard';
 import Altbar from './components/Altbar';
 import Documents from './pages/Documents';
 import Work from './pages/Work';
+import Vehicles from './pages/Vehicles';
+import Debts from './pages/Debts';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/documents" element={<Documents/>}/>
         <Route path="/work-history" element={<Work/>}/>
+        <Route path="/vehicles" element={<Vehicles/>}/>
+        <Route path="/debts" element={<Debts/>}/>
 
       </Routes>
     </>

@@ -104,7 +104,7 @@ app.get("/work/:tc", (req, res) => {
       return res.status(404).send({ message: "Works not found" });
     }
 
-    res.send(results[0]); 
+    res.send(results); 
   });
 });
 
@@ -127,7 +127,30 @@ app.get("/work/total/:tc", (req, res) => {
       return res.status(404).send({ message: "Works not found" });
     }
 
-    res.send(results[0]); 
+    res.send(results); 
+  });
+});
+
+//araçları listelemek için
+app.get("/vehicle/:tc", (req, res) => {
+  const { tc } = req.params;
+
+  if (!tc) {
+    return res.status(400).send({ message: "TC is required" });
+  }
+
+
+  const query = "SELECT brand,model,year,tc FROM works WHERE tc = ?";
+  db.query(query, [tc], (err, results) => {
+    if (err) {
+      return res.status(500).send({ message: "Database error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send({ message: "Vehicles not found" });
+    }
+
+    res.send(results); 
   });
 });
 
