@@ -16,6 +16,7 @@ import Documents from './pages/Documents';
 import Work from './pages/Work';
 import Vehicles from './pages/Vehicles';
 import Debts from './pages/Debts';
+import Institutions from './pages/Institutions';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/work-history" element={<Work/>}/>
         <Route path="/vehicles" element={<Vehicles/>}/>
         <Route path="/debts" element={<Debts/>}/>
+        <Route path="/institutions" element={<Institutions />} />
 
       </Routes>
     </>

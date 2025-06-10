@@ -10,7 +10,8 @@ const services = [
   { title: 'İkamet Bilgilerim', icon: 'bi bi-house-door', url: '/ikamet-bilgileri' },
   { title: 'Miras İşlemleri', icon: 'bi bi-person-hearts', url: '/miras-islemleri' },
   { title: 'Ulusal Coğrafi Bilgi', icon: 'bi bi-globe-europe-africa', url: '/ulusal-cografya' },
-  { title: 'Sigorta Kayıtlarım', icon: 'bi bi-shield-check', url: '/sigorta-kayitlari' }
+  { title: 'Sigorta Kayıtlarım', icon: 'bi bi-shield-check', url: '/sigorta-kayitlari' },
+  { title: 'Kurumlar', icon: 'bi bi-building', url: '/institutions' }
 ];
 
 const ServiceGrid = () => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Altbar from '../components/Altbar';
 
 function Institutions() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -632,7 +633,7 @@ function Institutions() {
   const containerStyle = {
     maxWidth: "1200px",
     margin: "0 auto",
-    padding: "40px 20px"
+    padding: "101px 20px 40px"
   };
 
 
@@ -640,7 +641,7 @@ function Institutions() {
     <div style={containerStyle}>
       <h1 style={titleStyle}>Kurumlar</h1>
       <p style={descriptionStyle}>
-        Bu sayfa üzerinde Türkiye Cumhuriyeti Devleti'ne ait temel yasama, yürütme ve yargı kurumları ile Özel Kuruluşların listesini bulabilirsiniz. İlgili bağlantıları kullanarak kurum hakkında bilgi alabilirsiniz.
+        Türkiye Cumhuriyeti’nin temel devlet kurumları ile bazı özel kuruluşlara ait bilgileri bu sayfada bulabilir, ilgili bağlantıları kullanarak detaylara ulaşabilirsiniz.
       </p>
 
       <div className="position-relative w-50 mx-auto mb-4">
@@ -704,7 +705,9 @@ function Institutions() {
           </div>
         ))}
       </div>
+      <Altbar />
     </div>
+  
   );
 }
  
