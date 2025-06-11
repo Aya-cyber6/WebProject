@@ -38,6 +38,15 @@ CREATE TABLE IF NOT EXISTS vehicle (
     color VARCHAR(50),
     FOREIGN KEY (tc) REFERENCES users(tc) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS debts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tc VARCHAR(11) NOT NULL,
+    place VARCHAR(255),
+    last_date DATE,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (tc) REFERENCES users(tc) ON DELETE CASCADE
+);
 */
 const express = require("express");
 const cors = require("cors");
@@ -79,7 +88,7 @@ app.post("/login", (req, res) => {
     if (result.length > 0) {
       res.send({ message: "Giriş başarılı!", user: result[0] });
     } else {
-      res.status(401).send({ message: "Login failed" });
+      res.status(401).send({ message: "Giriş başarısız" });
     }
   });
 });
@@ -168,6 +177,29 @@ app.get("/vehicle/:tc", (req, res) => {
       return res.status(500).send({ message: "Sunucu hatası." });
     }
     res.send(result);
+  });
+});
+
+
+app.get("/debts/:tc", (req, res) => {
+  const { tc } = req.params;
+
+  if (!tc) {
+    return res.status(400).send({ message: "TC kimlik numarası gerekli." });
+  }
+
+  const query = "SELECT place, last_date, amount FROM debts WHERE tc = ?";
+  con.query(query, [tc], (err, results) => {
+    if (err) {
+      console.error("Borç verileri alınamadı:", err);
+      return res.status(500).send({ message: "Sunucu hatası." });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send({ message: "Borç bulunamadı." });
+    }
+
+    res.send(results);
   });
 });
 

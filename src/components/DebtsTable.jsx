@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import axios from 'axios';
 import Altbar from '../components/Altbar';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCreditCard} from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 
 function DebtsTables() {
   const [debts, setDebts] = useState([]);
@@ -21,6 +21,11 @@ function DebtsTables() {
 
   const display = (value) =>
     value !== undefined && value !== null && value !== "" ? value : "Yok";
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("tr-TR");
+  };
 
   return (
     <div className="container mt-5 mb-5" style={{ paddingBottom: "80px", paddingTop: "40px" }}>
@@ -60,7 +65,7 @@ function DebtsTables() {
                 debts.map((debt, index) => (
                   <tr key={index}>
                     <td>{display(debt.place)}</td>
-                    <td>{display(debt.last_date)}</td>
+                    <td>{formatDate(debt.last_date)}</td>
                     <td>{display(debt.amount)}</td>
                   </tr>
                 ))
@@ -80,3 +85,4 @@ function DebtsTables() {
 }
 
 export default DebtsTables;
+
