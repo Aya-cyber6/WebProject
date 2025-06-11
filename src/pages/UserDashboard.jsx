@@ -48,7 +48,8 @@ const UserDashboard = () => {
         <p><strong>İsim:</strong> {display(user.name)}</p>
         <p><strong>Soyad:</strong> {display(user.surname)}</p>
         <p><strong>TC Kimlik No:</strong> {display(user.tc)}</p>
-        <p><strong>Doğum Tarihi:</strong> {display(user.birthdate)}</p>
+        <p><strong>Doğum Tarihi:</strong> {user.birthday ? new Date(user.birthday).toLocaleDateString('tr-TR') : "Yok"}</p>
+
       </div>
 
       <div

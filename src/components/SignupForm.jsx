@@ -5,7 +5,7 @@ import axios from 'axios'; // axios'u import ettik
 
 
 function SignupForm() {
-  const [formData, setFormData] = useState({ email: "", password: "",phone: "",name:"",surname:"",addres:"",birthday:"",confirmPassword:"" });
+  const [formData, setFormData] = useState({tc:"", email: "", password: "",phone: "",name:"",surname:"",address:"",birthday:"",confirmPassword:"" });
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {

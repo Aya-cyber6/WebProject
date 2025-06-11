@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck, faUserTie } from "@fortawesome/free-solid-svg-icons";
 
 const SumWorkDayComp = ({ tc }) => {
-  const [workSummary, setWorkSummary] = useState(null);
+  const [totalDays, setTotalDays] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,8 +13,10 @@ const SumWorkDayComp = ({ tc }) => {
 
     setLoading(true);
     axios.get(`http://localhost:3001/works/total/${tc}`)
-      .then(res => {
-        setWorkSummary(res.data);
+      .then((res) => {
+        const data = res.data;
+        const total = Array.isArray(data) ? data[0]?.total_days : data?.total_days;
+        setTotalDays(total || 0);
         setLoading(false);
       })
       .catch(() => {
@@ -23,25 +25,22 @@ const SumWorkDayComp = ({ tc }) => {
       });
   }, [tc]);
 
-  const display = (value) =>
-    value !== undefined && value !== null && value !== "" ? value : "Yok";
-
-  const totalDays = workSummary?.total_days || 0;
   const remainingDays = 7000 - totalDays;
 
-  const retirementStatus = remainingDays <= 0 ? (
-    <span className="text-success fw-bold">
-      🥳 Tebrikler, Emekli Olabilirsiniz!
-    </span>
-  ) : (
-    <span>
-      ⏳ <strong>Emekliliğe kalan gün:</strong> {remainingDays}
-    </span>
-  );
+  const retirementStatus =
+    remainingDays <= 0 ? (
+      <span className="text-success fw-bold">
+        🥳 Tebrikler, Emekli Olabilirsiniz!
+      </span>
+    ) : (
+      <span>
+        ⏳ <strong>Emekliliğe kalan gün:</strong> {remainingDays}
+      </span>
+    );
 
-    //backend testi yaparken bunları yorum satırına alırsanız çıktıları görürsünüz
- // if (loading) return ( <p className="text-center mt-5" style={{ fontSize: "18px" }}>⏳ Yükleniyor...</p>);
-  //if (error) return ( <p className="text-center mt-5 text-danger" style={{ fontSize: "18px" }}>⚠️ {error} </p>);
+  // istersen yüklenme ve hata durumlarını da göster
+  // if (loading) return <p className="text-center mt-5">⏳ Yükleniyor...</p>;
+  // if (error) return <p className="text-center mt-5 text-danger">⚠️ {error}</p>;
 
   return (
     <div className="container mt-5 mb-4" style={{ paddingBottom: "80px" }}>
@@ -66,7 +65,7 @@ const SumWorkDayComp = ({ tc }) => {
           <FontAwesomeIcon icon={faCalendarCheck} className="me-2" />
           Toplam Çalışma Günleri
         </h5>
-        <p style={{ fontSize: "18px" }}>{display(totalDays)}</p>
+        <p style={{ fontSize: "18px" }}>{totalDays}</p>
 
         <hr />
 

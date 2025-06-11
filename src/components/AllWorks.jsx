@@ -22,18 +22,23 @@ const AllWorks = ({ tc }) => {
       });
   }, [tc]);
 
-  const display = (value) => (value !== undefined && value !== null && value !== "") ? value : "Yok";
+  const display = (value) =>
+    value !== undefined && value !== null && value !== "" ? value : "Yok";
+
+  const formatDate = (date) => {
+    if (!date) return "Yok";
+    return new Date(date).toLocaleDateString("tr-TR");
+  };
 
   const workCards = works.length > 0 ? works : [{}];
 
-  //backend testi yaparken bunları yorum satırına alırsanız çıktıları görürsünüz
-  //if (loading) return <p className="text-center mt-5" style={{ fontSize: "18px" }}>⌛ Yükleniyor...</p>;
-  //if (error) return <p className="text-center mt-5 text-danger" style={{ fontSize: "18px" }}>⚠️ {error}</p>;
-
+  // Backend testi yaparken bunları yorum satırına alırsanız çıktıları görürsünüz
+  // if (loading) return <p className="text-center mt-5">⏳ Yükleniyor...</p>;
+  // if (error) return <p className="text-center text-danger mt-5">⚠️ {error}</p>;
 
   return (
     <div className="container mt-4 mb-3">
-      <h2 
+      <h2
         className="mb-4 fw-bold d-flex align-items-center gap-2"
         style={{ fontSize: "2rem", color: "#2c3e50", textShadow: "1px 1px 3px rgba(0,0,0,0.1)" }}
       >
@@ -42,8 +47,8 @@ const AllWorks = ({ tc }) => {
 
       <div className="d-flex flex-column gap-4">
         {workCards.map((work, i) => (
-          <div 
-            key={i} 
+          <div
+            key={i}
             className="shadow p-4 rounded"
             style={{
               background: "linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%)",
@@ -55,10 +60,10 @@ const AllWorks = ({ tc }) => {
             }}
           >
             <h4 style={{ fontSize: "1.6rem", marginBottom: "12px" }}>
-              {work.work_name ? `🏢 ${display(work.work_name)}` : "🚫 Çalışma Bilgisi Yok"}
+              {work.company_name ? `🏢 ${display(work.company_name)}` : "🚫 Çalışma Bilgisi Yok"}
             </h4>
-            <p>📅 <strong>Başlangıç Tarihi:</strong> {display(work.first_day)}</p>
-            <p>📅 <strong>Bitiş Tarihi:</strong> {display(work.last_day)}</p>
+            <p>📅 <strong>Başlangıç Tarihi:</strong> {display(formatDate(work.start_date))}</p>
+            <p>📅 <strong>Bitiş Tarihi:</strong> {display(formatDate(work.end_date))}</p>
             <p>🕒 <strong>Toplam Gün:</strong> {display(work.total_day)}</p>
           </div>
         ))}

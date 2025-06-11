@@ -18,17 +18,20 @@ import { useNavigate } from 'react-router-dom';
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:3001/login", formData, {
-      withCredentials: false,
-    }); // 127.0.0.1 bazen daha tutarlıdır
+  e.preventDefault();
+  try {
+    const res = await axios.post("http://localhost:3001/login", formData);
+    if (res.data.user) {
+      localStorage.setItem("tc", res.data.user.tc);
       setMessage(res.data.message || "Login successful!");
       navigate('/dashboard');
-    } catch (err) {
-      setMessage("Login failed. Check your credentials.");
+    } else {
+      setMessage("Giriş başarısız.");
     }
-  };  
+  } catch (err) {
+    setMessage("Login failed. Check your credentials.");
+  }
+}; 
 
   return (
     <>
