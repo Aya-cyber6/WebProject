@@ -26,7 +26,7 @@ function App() {
     <>
       <TransparentNavbar/>
       <Routes>
-        <Route path="/" element={
+        <Route path="/home" element={
           <>
             <HeroSection/>
             <div className="d-flex justify-content-center p-4">
@@ -40,7 +40,7 @@ function App() {
             <Altbar/>
           </>
         } />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/documents" element={<Documents/>}/>

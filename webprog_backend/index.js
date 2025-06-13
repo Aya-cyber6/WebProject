@@ -171,7 +171,15 @@ app.get("/works/:tc", (req, res) => {
 
 app.get("/works/total/:tc", (req, res) => {
   const tc = req.params.tc;
-  const sql = "SELECT SUM(total_day) AS total_days FROM work WHERE tc = ?";
+  const sql = `
+    SELECT 
+      SUM(DATEDIFF(last_day, first_day) + 1) AS total_days
+    FROM 
+      work 
+    WHERE 
+      tc = ?
+  `;
+
   con.query(sql, [tc], (err, result) => {
     if (err) {
       console.error("Toplam gün sorgusu başarısız:", err);
@@ -213,6 +221,18 @@ app.get("/debts/:tc", (req, res) => {
     }
 
     res.send(results);
+  });
+});
+app.get("/document/:tc", (req, res) => {
+  const tc = req.params.tc;
+  console.log("Gelen TC:", tc);
+  const sql = "SELECT document_name, date, context FROM document WHERE tc = ?";
+  con.query(sql, [tc], (err, result) => {
+    if (err) {
+      console.error("Document verileri alınamadı:", err);
+      return res.status(500).send({ message: "Sunucu hatası." });
+    }
+    res.send(result);
   });
 });
 

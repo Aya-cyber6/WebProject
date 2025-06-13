@@ -34,7 +34,7 @@ function DebtsPaymentPage() {
       })
       .catch(() => {
         alert("Borç verileri alınamadı.");
-        navigate("/");
+        navigate("/home");
       })
       .finally(() => setLoading(false));
   }, [navigate]);

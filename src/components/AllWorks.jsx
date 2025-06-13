@@ -60,11 +60,18 @@ const AllWorks = ({ tc }) => {
             }}
           >
             <h4 style={{ fontSize: "1.6rem", marginBottom: "12px" }}>
-              {work.company_name ? `🏢 ${display(work.company_name)}` : "🚫 Çalışma Bilgisi Yok"}
+              {work.work_name ? `🏢 ${display(work.work_name)}` : "🚫 Çalışma Bilgisi Yok"}
             </h4>
-            <p>📅 <strong>Başlangıç Tarihi:</strong> {display(formatDate(work.start_date))}</p>
-            <p>📅 <strong>Bitiş Tarihi:</strong> {display(formatDate(work.end_date))}</p>
-            <p>🕒 <strong>Toplam Gün:</strong> {display(work.total_day)}</p>
+            <p>📅 <strong>Başlangıç Tarihi:</strong> {display(formatDate(work.first_day))}</p>
+            <p>📅 <strong>Bitiş Tarihi:</strong> {display(formatDate(work.last_day))}</p>
+            <p>🕒 <strong>Toplam Gün:</strong> {
+              display(
+                Math.floor(
+                  (new Date(work.last_day) - new Date(work.first_day)) / (1000 * 60 * 60 * 24)
+                ) + 1
+              )
+            }</p>
+
           </div>
         ))}
       </div>

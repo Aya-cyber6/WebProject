@@ -24,7 +24,7 @@ export default function TransparentNavbar() {
   const handleLogout = () => {
     localStorage.removeItem("tc");
     setIsLogged(false);
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -35,13 +35,13 @@ export default function TransparentNavbar() {
       variant="dark"
     >
       <Container>
-        <Navbar.Brand href="/">MyBrand</Navbar.Brand>
+        <Navbar.Brand href="/home">MyBrand</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {!isLogged ? (
               <>
-                <Nav.Link href="/Login">Login</Nav.Link>
+                <Nav.Link href="/">Login</Nav.Link>
                 <Nav.Link href="/Register">Sign in</Nav.Link>
               </>
             ) : (

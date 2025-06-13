@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import DocumentCard from '../components/DocumentCard';
 import Altbar from '../components/Altbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,9 +11,10 @@ function Documents() {
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
-        const response = await fetch('/documents'); 
-        const data = await response.json();
-        setDocuments(data); 
+        const tc = localStorage.getItem("tc");
+
+        const response = await axios.get(`http://localhost:3001/document/${tc}`);
+        setDocuments(response.data);
       } catch (error) {
         console.error('Veriler alınırken hata oluştu:', error);
       }
@@ -21,10 +23,9 @@ function Documents() {
     fetchDocuments();
   }, []);
 
-  // Eğer belge yoksa gösterilecek placeholder obje
   const docsToDisplay = documents.length > 0 
     ? documents 
-    : [{ id: 0, name: "📁 Henüz belge bulunmamaktadır", date: "", context: "" }];
+    : [{ id: 0, document_name: "📁 Henüz belge bulunmamaktadır", date: "", context: "" }];
 
   return (
     <div className="container mt-5 mb-5" style={{ paddingBottom: '80px', paddingTop: '40px' }}>
@@ -43,7 +44,7 @@ function Documents() {
           <DocumentCard
             key={i}
             id={i + 1}
-            name={doc.name}
+            name={doc.document_name}
             date={doc.date}
             context={doc.context}
             icon={<FontAwesomeIcon icon={faFileAlt} style={{ marginRight: '8px', color: '#0d6efd' }} />}
@@ -57,6 +58,3 @@ function Documents() {
 }
 
 export default Documents;
-
-
-
