@@ -5,10 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const services = [
   { title: 'Çalışma Geçmişi', icon: 'bi bi-briefcase', url: '/work-history' },
   { title: 'Kişisel Araçlar', icon: 'bi bi-truck', url: '/vehicles' },
-  { title: 'Şirket Araçları', icon: 'bi bi-truck-front', url: '/sirket-araclar' },
   { title: 'Şifre Talebi (Kargo)', icon: 'bi bi-mailbox', url: '/sifre-talebi' },
-  { title: 'İkamet Bilgilerim', icon: 'bi bi-house-door', url: '/ikamet-bilgileri' },
-  { title: 'Miras İşlemleri', icon: 'bi bi-person-hearts', url: '/miras-islemleri' },
+  { title: 'İkamet Bilgilerim', icon: 'bi bi-house-door', url: '/address' },
   { title: 'Ulusal Coğrafi Bilgi', icon: 'bi bi-globe-europe-africa', url: '/ulusal-cografya' },
   { title: 'Sigorta Kayıtlarım', icon: 'bi bi-shield-check', url: '/sigorta-kayitlari' },
   { title: 'Kurumlar', icon: 'bi bi-building', url: '/institutions' }

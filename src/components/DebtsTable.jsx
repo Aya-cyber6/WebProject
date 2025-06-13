@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';  
 import axios from 'axios';
 import Altbar from '../components/Altbar';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,7 @@ function DebtsTables() {
   useEffect(() => {
     const tc = localStorage.getItem("tc");
 
-    axios.get(`http://localhost:3001/Debts/${tc}`)
+    axios.get(`http://localhost:3001/debts/${tc}`)
       .then((res) => {
         setDebts(res.data); 
       })
@@ -62,8 +62,8 @@ function DebtsTables() {
             </thead>
             <tbody>
               {debts.length > 0 ? (
-                debts.map((debt, index) => (
-                  <tr key={index}>
+                debts.map((debt) => (
+                  <tr key={debt.id}>
                     <td>{display(debt.place)}</td>
                     <td>{formatDate(debt.last_date)}</td>
                     <td>{display(debt.amount)}</td>

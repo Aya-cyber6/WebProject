@@ -17,6 +17,9 @@ import Work from './pages/Work';
 import Vehicles from './pages/Vehicles';
 import Debts from './pages/Debts';
 import Institutions from './pages/Institutions';
+import DebtsPaymentPage from "./pages/DebtsPaymentPage";
+import Address from './pages/Address';
+import Nation from './pages/Nation';
 
 function App() {
   return (
@@ -45,7 +48,9 @@ function App() {
         <Route path="/vehicles" element={<Vehicles/>}/>
         <Route path="/debts" element={<Debts/>}/>
         <Route path="/institutions" element={<Institutions />} />
-
+        <Route path="/payment" element={<DebtsPaymentPage />} />
+        <Route path="/address" element={<Address />} />
+        <Route path="/ulusal-cografya" element={<Nation />} />
       </Routes>
     </>
   );
