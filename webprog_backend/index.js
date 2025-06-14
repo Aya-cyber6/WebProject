@@ -77,7 +77,7 @@ const con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "webdb", 
+  database: "webdb",
 });
 
 con.connect((err) => {
@@ -107,7 +107,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  console.log("Kayıt isteği verileri:", req.body);  // Burada form verileri konsola basılır
+  console.log("Kayıt isteği verileri:", req.body); // Burada form verileri konsola basılır
 
   const {
     tc,
@@ -125,7 +125,8 @@ app.post("/register", (req, res) => {
     return res.status(400).send({ message: "Parolalar eşleşmiyor." });
   }
 
-  const sql = "INSERT INTO users (tc, name, surname, email, phone, birthday, address, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+  const sql =
+    "INSERT INTO users (tc, name, surname, email, phone, birthday, address, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
   con.query(
     sql,
     [tc, name, surname, email, phone, birthday, address, password],
@@ -141,7 +142,8 @@ app.post("/register", (req, res) => {
 
 app.get("/user/:tc", (req, res) => {
   const tc = req.params.tc;
-  const sql = "SELECT tc, name, surname, birthday, email, phone, address FROM users WHERE tc = ?";
+  const sql =
+    "SELECT tc, name, surname, birthday, email, phone, address FROM users WHERE tc = ?";
 
   con.query(sql, [tc], (err, result) => {
     if (err) {
@@ -189,6 +191,29 @@ app.get("/works/total/:tc", (req, res) => {
   });
 });
 
+app.post("/vehicle", (req, res) => {
+  console.log("Araç ekleme verileri:", req.body);
+
+  const { tc, plate, brand, model, year, color } = req.body;
+
+  if (!tc || !plate || !brand || !model || !year || !color) {
+    return res.status(400).send({ message: "Tüm alanlar gereklidir." });
+  }
+
+  const sql = `
+    INSERT INTO vehicle (tc, plate, brand, model, year, color)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  con.query(sql, [tc, plate, brand, model, year, color], (err, result) => {
+    if (err) {
+      console.error("Araç eklenirken hata:", err);
+      return res.status(500).send({ message: "Araç eklenemedi." });
+    }
+    res.send({ message: "Araç başarıyla eklendi!" });
+  });
+});
+
 app.get("/vehicle/:tc", (req, res) => {
   const tc = req.params.tc;
   const sql = "SELECT * FROM vehicle WHERE tc = ?";
@@ -201,8 +226,46 @@ app.get("/vehicle/:tc", (req, res) => {
   });
 });
 
+app.get("/vehicle/brands/stats", (req, res) => {
+  const sql = `
+    SELECT brand, COUNT(*) AS total
+    FROM vehicle
+    GROUP BY brand
+  `;
 
-app.get("/debts/:tc", (req, res) => { 
+  con.query(sql, (err, result) => {
+    if (err) {
+      console.error("Marka istatistikleri alınamadı:", err);
+      return res.status(500).send({ message: "Sunucu hatası." });
+    }
+    res.send(result);
+  });
+});
+
+app.put("/user/:tc", (req, res) => {
+  const tc = req.params.tc;
+  const { name, surname, birthday, email, address, phone } = req.body;
+
+  const sql = `
+    UPDATE users
+    SET name = ?, surname = ?, birthday = ?, email = ?, address = ?, phone = ?
+    WHERE tc = ?
+  `;
+
+  con.query(
+    sql,
+    [name, surname, birthday, email, address, phone, tc],
+    (err, result) => {
+      if (err) {
+        console.error("Profil güncellenirken hata:", err);
+        return res.status(500).send({ message: "Profil güncellenemedi." });
+      }
+      res.send({ message: "Profil başarıyla güncellendi!" });
+    }
+  );
+});
+
+app.get("/debts/:tc", (req, res) => {
   const { tc } = req.params;
 
   if (!tc) {
@@ -236,11 +299,16 @@ app.get("/document/:tc", (req, res) => {
   });
 });
 
-
 app.post("/pay", (req, res) => {
   const { tc, selectedDebts, paymentType, cardNumber } = req.body;
 
-  if (!tc || !selectedDebts || selectedDebts.length === 0 || !paymentType || !cardNumber) {
+  if (
+    !tc ||
+    !selectedDebts ||
+    selectedDebts.length === 0 ||
+    !paymentType ||
+    !cardNumber
+  ) {
     return res.status(400).send({ message: "Eksik ödeme verisi." });
   }
 
@@ -330,7 +398,6 @@ app.put("/user/address", (req, res) => {
     res.send({ message: "Adres başarıyla güncellendi." });
   });
 });
-
 
 app.listen(PORT, () => {
   console.log(`Sunucu http://localhost:${PORT} üzerinden çalışıyor`);

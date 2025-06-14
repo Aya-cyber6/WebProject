@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
-  const [formData, setFormData] = useState({ password: "", tc: "" });
+  const [formData, setFormData] = useState({ tc: "", password: "" });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 

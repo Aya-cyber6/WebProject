@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import SignupForm from "../components/SignupForm";
-import Altbar from "../components/Altbar";
 
 function Register() {
   const [formData, setFormData] = useState({ email: "", password: "" });
