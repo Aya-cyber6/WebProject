@@ -20,10 +20,10 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS work (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tc VARCHAR(11) NOT NULL,
-    company_name VARCHAR(255),
+    work_name VARCHAR(255),
     position VARCHAR(100),
-    start_date DATE,
-    end_date DATE,
+    first_day DATE,
+    last_day DATE,
     total_day INT,
     FOREIGN KEY (tc) REFERENCES users(tc) ON DELETE CASCADE
 );
