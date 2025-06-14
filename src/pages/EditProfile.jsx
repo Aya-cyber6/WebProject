@@ -56,98 +56,50 @@ const EditProfile = () => {
       });
   };
 
-  if (loading) return <p>Yükleniyor...</p>;
+  if (loading) return <p className="text-center mt-5">Yükleniyor...</p>;
 
   return (
-    <div
-      className="container mt-5 mb-5"
-      style={{ maxWidth: "600px", paddingBottom: "80px", paddingTop: "40px" }}
-    >
-      <h2 className="mb-4 fw-bold" style={{ color: "#2c3e50" }}>
-        Profili Düzenle
-      </h2>
+    <>
+      <div
+        className="container mt-5 mb-5"
+        style={{ maxWidth: "600px", paddingBottom: "120px", paddingTop: "40px" }}
+      >
+        <h2 className="mb-4 fw-bold text-center" style={{ color: "#2c3e50" }}>
+          Profili Düzenle
+        </h2>
 
-      {message && <div className="alert alert-info">{message}</div>}
+        {message && <div className="alert alert-info">{message}</div>}
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label>İsim</label>
-          <input
-            type="text"
-            name="name"
-            value={user.name}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          {[
+            { label: "İsim", name: "name", type: "text", required: true },
+            { label: "Soyad", name: "surname", type: "text", required: true },
+            { label: "Doğum Tarihi", name: "birthday", type: "date" },
+            { label: "Email", name: "email", type: "email", required: true },
+            { label: "Adres", name: "address", type: "text" },
+            { label: "Telefon", name: "phone", type: "text" },
+          ].map((field) => (
+            <div className="mb-3" key={field.name}>
+              <label>{field.label}</label>
+              <input
+                type={field.type}
+                name={field.name}
+                value={user[field.name]}
+                onChange={handleChange}
+                className="form-control"
+                required={field.required}
+              />
+            </div>
+          ))}
 
-        <div className="mb-3">
-          <label>Soyad</label>
-          <input
-            type="text"
-            name="surname"
-            value={user.surname}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Doğum Tarihi</label>
-          <input
-            type="date"
-            name="birthday"
-            value={user.birthday}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Adres</label>
-          <input
-            type="text"
-            name="address"
-            value={user.address}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Telefon</label>
-          <input
-            type="text"
-            name="phone"
-            value={user.phone}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-
-        <button type="submit" className="btn btn-primary">
-          Güncelle
-        </button>
-      </form>
-
-      <div className="mt-5">
-        <Altbar />
+          <button type="submit" className="btn btn-primary w-100">
+            Güncelle
+          </button>
+        </form>
       </div>
-    </div>
+
+      <Altbar />
+    </>
   );
 };
 

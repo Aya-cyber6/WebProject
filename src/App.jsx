@@ -34,7 +34,7 @@ function App() {
               <HeroSection />
               <div className="d-flex justify-content-center p-4">
                 <div className="d-flex gap-4">
-                  <Card />
+                  
                   <ImageCardCarousel />
                 </div>
               </div>

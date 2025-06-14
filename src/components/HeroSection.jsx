@@ -16,7 +16,7 @@ export default function HeroSection() {
   return (
     <div style={backgroundStyle}>
       <div>
-        <h1>e-Dnyaya'e Hoş Geldiniz</h1>
+        <h1>e-Dünya'ya Hoş Geldiniz</h1>
         <input
           type="text"
           className="form-control mt-3"

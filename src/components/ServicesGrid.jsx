@@ -13,7 +13,7 @@ function ServicesGrid() {
     <div
       className="container-fluid my-4 rounded"
       style={{
-        backgroundColor: '#40E0D0',
+        backgroundColor: '#e0f7fa',
         minHeight: '300px',
         paddingTop: '100px',
         paddingBottom: '40px',
@@ -29,7 +29,7 @@ function ServicesGrid() {
               </Card.Body>
             </Card>
           );
-
+//Her bir servisi (kartı) Link ile tıklanabilir yapıyor (eğer bir URL’si varsa), yoksa sadece düz bir kart olarak gösteriyor.
           return (
             <Col md={4} key={idx}>
               {service.url ? (

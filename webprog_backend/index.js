@@ -191,6 +191,7 @@ app.get("/works/total/:tc", (req, res) => {
   });
 });
 
+// Araç ekleme
 app.post("/vehicle", (req, res) => {
   console.log("Araç ekleme verileri:", req.body);
 
@@ -214,6 +215,7 @@ app.post("/vehicle", (req, res) => {
   });
 });
 
+// TC ile araçları getir
 app.get("/vehicle/:tc", (req, res) => {
   const tc = req.params.tc;
   const sql = "SELECT * FROM vehicle WHERE tc = ?";
@@ -226,14 +228,17 @@ app.get("/vehicle/:tc", (req, res) => {
   });
 });
 
-app.get("/vehicle/brands/stats", (req, res) => {
+// Marka istatistikleri (GROUP BY)
+app.get("/vehicle/brands/stats/:tc", (req, res) => {
+  const tc = req.params.tc;
   const sql = `
     SELECT brand, COUNT(*) AS total
     FROM vehicle
+    WHERE tc = ?
     GROUP BY brand
   `;
 
-  con.query(sql, (err, result) => {
+  con.query(sql, [tc], (err, result) => {
     if (err) {
       console.error("Marka istatistikleri alınamadı:", err);
       return res.status(500).send({ message: "Sunucu hatası." });
@@ -241,6 +246,7 @@ app.get("/vehicle/brands/stats", (req, res) => {
     res.send(result);
   });
 });
+
 
 app.put("/user/:tc", (req, res) => {
   const tc = req.params.tc;

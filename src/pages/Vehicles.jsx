@@ -13,10 +13,15 @@ function Vehicles() {
     year: "",
     color: "",
   });
+  const [brandStats, setBrandStats] = useState([]);
 
   const tc = localStorage.getItem("tc");
 
   useEffect(() => {
+    if (!tc) {
+      alert("Giriş yapmanız gerekiyor.");
+      return;
+    }
     fetchVehicles();
   }, []);
 
@@ -44,16 +49,16 @@ function Vehicles() {
         tc: tc,
       })
       .then(() => {
-        fetchVehicles(); // Refresh list
-        setNewVehicle({ plate: "", brand: "", model: "", year: "", color: "" }); // Reset form
+        fetchVehicles(); // Listeyi yenile
+        setNewVehicle({ plate: "", brand: "", model: "", year: "", color: "" }); // Formu sıfırla
       })
       .catch((err) => console.error("Araç eklenemedi:", err));
   };
 
-  const [brandStats, setBrandStats] = useState([]);
-
   const fetchBrandStats = () => {
-    fetch("http://localhost:3001/vehicle/brands/stats")
+    if (!tc) return;
+
+    fetch(`http://localhost:3001/vehicle/brands/stats/${tc}`)
       .then((res) => res.json())
       .then((data) => {
         setBrandStats(data);
@@ -220,6 +225,7 @@ function Vehicles() {
           </ul>
         </div>
       )}
+
       <Altbar />
     </div>
   );
