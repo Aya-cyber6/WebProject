@@ -8,7 +8,7 @@ function DebtsTables() {
   const [debts, setDebts] = useState([]);
 
   useEffect(() => {
-    const tc = localStorage.getItem("tc");
+    const tc = localStorage.getItem("tc"); //sayfaya hangi tc ile girdiğimizi saklamak için
 
     axios.get(`http://localhost:3001/debts/${tc}`)
       .then((res) => {
@@ -53,7 +53,7 @@ function DebtsTables() {
         <h5 className="card-title mb-3">🧾 Borç Bilgileri</h5>
         <div className="table-responsive">
           <table className="table table-striped table-bordered">
-            <thead className="table-dark">
+            <thead className="table-dark"> {/*table kullandık 3 adet header var*/}
               <tr>
                 <th>Yer</th>
                 <th>Son Ödeme Tarihi</th>
@@ -61,7 +61,7 @@ function DebtsTables() {
               </tr>
             </thead>
             <tbody>
-              {debts.length > 0 ? (
+              {debts.length > 0 ? ( /*borç var ise bize borç bilgilerini getirmesi için*/
                 debts.map((debt) => (
                   <tr key={debt.id}>
                     <td>{display(debt.place)}</td>

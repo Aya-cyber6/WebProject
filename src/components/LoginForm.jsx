@@ -9,6 +9,7 @@ function LoginForm() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  //forma verdiğimiz değerleri usestate kullanarak formdata olarak alıyoruz
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -29,7 +30,7 @@ function LoginForm() {
     }
   };
 
-  // 👇 Kayıt Ol butonuna basıldığında /register sayfasına git
+  //  Kayıt Ol butonuna basıldığında /register sayfasına git
   const handleRegister = () => {
     navigate('/register');
   };

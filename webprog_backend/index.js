@@ -292,6 +292,7 @@ app.get("/debts/:tc", (req, res) => {
     res.send(results);
   });
 });
+
 app.get("/document/:tc", (req, res) => {
   const tc = req.params.tc;
   console.log("Gelen TC:", tc);

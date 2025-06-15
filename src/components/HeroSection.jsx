@@ -12,7 +12,7 @@ export default function HeroSection() {
     justifyContent: 'center',
     textAlign: 'center',
   };
-
+ // search çubuğu ve background yapısı
   return (
     <div style={backgroundStyle}>
       <div>

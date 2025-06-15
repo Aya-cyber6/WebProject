@@ -8,7 +8,7 @@ const ImageCardCarousel = () => {
         {[...Array(3)].map((_, i) => (
           <Carousel.Item key={i} interval={null}>
             <img
-              src={`https://picsum.photos/600/200?random=${i}`}
+              src={`https://picsum.photos/600/200?random=${i}`} 
               className="d-block w-100 rounded"
               alt={`Slide ${i + 1}`}
             />

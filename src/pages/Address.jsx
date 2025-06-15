@@ -24,6 +24,7 @@ const Address = () => {
       setMessage('Adres boş bırakılamaz.');
       return;
     }
+    //adres güncelleme
     setLoading(true);
     axios.put('http://localhost:3001/user/address', { tc, address: newAddress })
       .then(() => {
@@ -44,7 +45,7 @@ const Address = () => {
       <div className="mb-3">
         <label className="form-label">Mevcut Adres:</label>
         <div className="bg-light p-3 rounded" style={{ minHeight: '100px' }}>
-          {address || 'Adres bilgisi bulunamadı.'}
+          {address || 'Adres bilgisi bulunamadı.'} 
         </div>
       </div>
 
@@ -55,7 +56,7 @@ const Address = () => {
             className="form-control"
             rows={4}
             value={newAddress}
-            onChange={(e) => setNewAddress(e.target.value)}
+            onChange={(e) => setNewAddress(e.target.value)} /*adres bilgisi güncelleme*/
           />
         </div>
       )}
@@ -64,12 +65,12 @@ const Address = () => {
         {isEditing ? (
           <>
             <button className="btn btn-success" onClick={handleUpdate}>Güncelle</button>
-            <button className="btn btn-secondary" onClick={() => setIsEditing(false)}>İptal</button>
+            <button className="btn btn-secondary" onClick={() => setIsEditing(false)}>İptal</button> {/*adres bilgisi güncellemeyi iptal etme*/}
           </>
         ) : (
           <button className="btn btn-primary" onClick={() => { setIsEditing(true); setNewAddress(address); }}>
             Adresi Düzenle
-          </button>
+          </button> /*adres bilgisi güncelleme isteği*/
         )}
       </div>
     </div>

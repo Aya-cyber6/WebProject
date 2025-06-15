@@ -10,7 +10,7 @@ function Altbar() {
     { id: 2, label: 'Çağrı Merkezi', icon: 'bi bi-telephone'},
     { id: 3, label: 'Belgelerim', icon: 'bi bi-folder2-open' , url: "/documents" },
     { id: 4, label: 'Hakkımızda', icon: 'bi bi-info-circle' },
-  ];
+  ]; //altbara eklenen itemlerimiz
 
   const styles = {
     nav: {
@@ -48,7 +48,7 @@ function Altbar() {
 
   const handleClick = (item) => {
     setActiveId(item.id);
-    navigate(item.url); // Sayfa yönlendirmesi
+    navigate(item.url); // İteme tıklandığında Sayfa yönlendirmesi
   };
 
   return (
@@ -56,7 +56,7 @@ function Altbar() {
       {navItems.map((item) => (
         <button
           key={item.id}
-          onClick={() => handleClick(item)}
+          onClick={() => handleClick(item)} //hangi iteme tıklandı ise .map ile tespit edip oraya yönlendiriliyor
           style={{
             ...styles.button,
             ...(activeId === item.id ? styles.activeButton : {}),

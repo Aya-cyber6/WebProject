@@ -10,6 +10,7 @@ function DocumentCard({ id, name, date, context }) {
   };
 
   return (
+    //belgeleri gösteren div için csslerimiz
     <div
       className="shadow rounded"
       onClick={handleToggle}
@@ -26,9 +27,9 @@ function DocumentCard({ id, name, date, context }) {
       }}
     >
       <div className="d-flex align-items-center gap-3 mb-2">
-        <FontAwesomeIcon icon={faFileAlt} size="lg" style={{ color: '#00796b' }} />
+        <FontAwesomeIcon icon={faFileAlt} size="lg" style={{ color: '#00796b' }} /> {/* belegeler iconu*/}
         <h4 className="m-0" style={{ color: '#004d40' }}>
-          {name || `Belge ${id}`}
+          {name || `Belge ${id}`} {/* belge ismi var ise ismini yoksa belge id gösteriyor*/}
         </h4>
       </div>
 

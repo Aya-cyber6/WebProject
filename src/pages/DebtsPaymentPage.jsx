@@ -27,7 +27,7 @@ function DebtsPaymentPage() {
       .then((res) => {
         if (res.data.length === 0) {
           alert("Ödenecek borcunuz bulunmamaktadır.");
-          navigate("/");
+          navigate("/home");
         } else {
           setDebts(res.data);
         }
@@ -81,7 +81,7 @@ function DebtsPaymentPage() {
         setSuccessMessage("Ödeme başarılı! Ana sayfaya yönlendiriliyorsunuz...");
         setDebts((prev) => prev.filter((d) => !selected.some((s) => s.id === d.id)));
         setSelected([]);
-        setTimeout(() => navigate("/"), 2500);
+        setTimeout(() => navigate("/home"), 2500);
       })
       .catch((err) => {
         const msg = err.response?.data?.message || "Ödeme sırasında hata oluştu.";

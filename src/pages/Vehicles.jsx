@@ -13,7 +13,7 @@ function Vehicles() {
     year: "",
     color: "",
   });
-  const [brandStats, setBrandStats] = useState([]);
+  const [brandStats, setBrandStats] = useState([]); //marka filtresi için
 
   const tc = localStorage.getItem("tc");
 
@@ -68,6 +68,7 @@ function Vehicles() {
       });
   };
 
+  //araç var ise yoksa 
   const display = (value) =>
     value !== undefined && value !== null && value !== "" ? value : "Yok";
 

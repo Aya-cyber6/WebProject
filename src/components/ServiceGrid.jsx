@@ -13,7 +13,7 @@ const services = [
 ];
 
 const ServiceGrid = () => {
-  // Track hover states individually
+  // hangisine tıkladığımızda o değer aktifleşir ve belirttiğimiz url'ye gider
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
@@ -24,7 +24,7 @@ const ServiceGrid = () => {
         {services.map((service, idx) => (
           <Link
             key={idx}
-            to={service.url}
+            to={service.url} 
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
             className="text-center text-decoration-none"
